@@ -29,13 +29,42 @@
     </ul>
      <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
       {% include "wiki/includes/article_menu.html" %}
+
     </ul>
    </nav>
     <div>
       {% block wiki_contents_tab %}
+
       {% endblock %}
+
+<!-- <h2> 子文档：  -->
+        <!-- <a href="{% url 'wiki:create' path=urlpath.path %}" style="padding: 7px;"> -->
+          <!-- <span class="fa fa-arrow-down"></span> 新建子文档 -->
+        <!-- </a> -->
+<!-- </h2> -->
+<!-- <table class="table table-striped"> -->
+  <!-- <tr> -->
+    <!-- <th>{% trans "Title" %}</th> -->
+    <!-- <th>{% trans "Last modified" %}</th> -->
+  <!-- </tr> -->
+      <!-- {% for child in children_slice %} -->
+    <!-- <tr> -->
+        <!-- <td> -->
+          <!-- <a href="{% url 'wiki:get' path=child.path %}"> -->
+            <!-- {{ child.article.current_revision.title }} › -->
+          <!-- </a> -->
+        <!-- </td> -->
+        <!-- <td> -->
+            <!-- {{ child.article.current_revision.created}} -->
+        <!-- </td> -->
+
+    <!-- </tr> -->
+      <!-- {% endfor %} -->
+</table>
+
     </div>
   </div>
+
 
 {% endblock %}
 
