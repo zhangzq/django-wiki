@@ -31,7 +31,6 @@ log = logging.getLogger(__name__)
 
 
 class ArticleView(ArticleMixin, TemplateView):
-
     template_name = "wiki/view.html"
 
     @method_decorator(get_article(can_read=True))
@@ -607,7 +606,6 @@ class History(ListView, ArticleMixin):
 
 
 class Dir(ListView, ArticleMixin):
-
     template_name = "wiki/dir.html"
     allow_empty = True
     context_object_name = 'directory'

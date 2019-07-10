@@ -10,6 +10,7 @@
 
     <!-- Le styles -->
     <link href="{% static "wiki/bootstrap/css/wiki-bootstrap.min.css" %}" rel="stylesheet">
+    <link href="/static/css/citics.css" rel="stylesheet">
 
     {% render_block "css" %}
 
@@ -35,7 +36,7 @@
             <span class="icon-bar"></span>
           </button>
           {% block wiki_header_branding %}
-          <a class="navbar-brand" href="{% url 'wiki:root' %}">django-\/\/ i K |</a>
+          <a class="navbar-brand" href="{% url 'wiki:root' %}"> 股衍文档平台 </a>
           {% endblock %}
         </div>
         <div class="navbar-collapse collapse">
@@ -106,11 +107,11 @@
             {% else %}
             <ul class="nav navbar-nav">
               <li>
-                <a href="{% login_url as wiki_login_url %}{{ wiki_login_url }}">{% trans "Log in" %}</a>
+                <a href="http://websim.citicsinfo.com:8000/users/login/?next=/wiki">{% trans "Log in" %}</a>
               </li>
               {% if "ACCOUNT_HANDLING"|wiki_settings %}
               <li>
-                <a href="{% url 'wiki:signup' %}">{% trans "Sign up" %}</a>
+                <a href="http://websim.citicsinfo.com:8000/users/register/?next=/wiki">{% trans "Sign up" %}</a>
               </li>
               {% endif %}
             </ul>
@@ -118,8 +119,8 @@
           </div>
           {% block wiki_header_navlinks %}
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">{% trans "Home" %}</a></li>
-            <li><a href="https://github.com/django-wiki/django-wiki" target="_blank">{% trans "About" %}</a></li>
+            <li class="active"><a href="/wiki">文档平台首页</a></li>
+            <li ><a href="/">策略平台</a></li>
           </ul>
           {% endblock %}
         </div>
@@ -139,12 +140,8 @@
 
       <footer id="wiki-footer">
         <hr />
-        {% block wiki_footer_logo %}
-        <a href="https://github.com/django-wiki/django-wiki" class="pull-right"><img src="{% static "wiki/img/github_icon.png" %}" /></a>
-        {% endblock %}
         {% block wiki_footer_prepend %}
         {% endblock %}
-        <p>{% blocktrans %}Powered by <a href="http://www.django-wiki.org">django-wiki</a>, an open source application under the <a href="http://www.gnu.org/licenses/quick-guide-gplv3.html">GPLv3</a> license. Let knowledge be the cure.{% endblocktrans %}</p>
         <div style="clear: both"></div>
       </footer>
       </div>
