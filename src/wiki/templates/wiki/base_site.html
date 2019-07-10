@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block wiki_pagetitle %}{% endblock %}{% block wiki_site_title %} - django-\/\/  i K |{% endblock %}</title>
+    <title>{% block wiki_pagetitle %}{% endblock %} {% block wiki_site_title %} {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -36,7 +36,7 @@
             <span class="icon-bar"></span>
           </button>
           {% block wiki_header_branding %}
-          <a class="navbar-brand" href="{% url 'wiki:root' %}"> 股衍文档平台 </a>
+          <a class="navbar-brand" href="{% url 'wiki:root' %}"> 股衍文档 </a>
           {% endblock %}
         </div>
         <div class="navbar-collapse collapse">
