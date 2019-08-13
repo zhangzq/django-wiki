@@ -29,7 +29,7 @@ class LinkPlugin(BasePlugin):
     ]
 
     markdown_extensions = [
-        urlize_makeExtension(),
+        #  urlize_makeExtension(),
         WikiPathExtension(wikipath_config)]
 
 
