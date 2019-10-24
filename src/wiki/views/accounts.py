@@ -16,8 +16,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.translation import gettext as _
-from django.views.generic.base import View
-from django.views.generic.edit import CreateView, FormView, UpdateView
+from django.views.generic import CreateView, FormView, UpdateView, View
 from wiki import forms
 from wiki.conf import settings
 
@@ -131,7 +130,7 @@ class Update(UpdateView):
 
     def form_valid(self, form):
         pw = form.cleaned_data["password1"]
-        if pw is not "":
+        if pw != "":
             self.object.set_password(pw)
         self.object.save()
 

@@ -84,7 +84,7 @@ _default_tag_whitelists = bleach.ALLOWED_TAGS + [
     'dl',
     'dt',
     'dd',
-] + ['h{}'.format(n) for n in range(8)]
+] + ['h{}'.format(n) for n in range(1, 7)]
 
 
 #: List of allowed tags in Markdown article contents.
@@ -103,6 +103,8 @@ for tag in MARKDOWN_HTML_WHITELIST:
         _default_attribute_whitelist[tag] = []
     _default_attribute_whitelist[tag].append('class')
     _default_attribute_whitelist[tag].append('id')
+    _default_attribute_whitelist[tag].append('target')
+    _default_attribute_whitelist[tag].append('rel')
 
 _default_attribute_whitelist['img'].append('src')
 _default_attribute_whitelist['img'].append('alt')

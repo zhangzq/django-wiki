@@ -2,7 +2,7 @@ from django.apps import apps
 from django.contrib.auth import get_user_model
 from django.contrib.sites.models import Site
 from django.test.testcases import TestCase
-from wiki.compat import url
+from django.urls import re_path as url
 from wiki.conf import settings
 from wiki.managers import ArticleManager
 from wiki.models import Article, ArticleRevision, URLPath
@@ -38,17 +38,17 @@ class ArticleModelTest(TestCase):
 
         a = Article.objects.create()
 
-        self.assertFalse(a.current_revision)
-        self.assertFalse(a.owner)
-        self.assertFalse(a.group)
+        self.assertIsNone(a.current_revision)
+        self.assertIsNone(a.owner)
+        self.assertIsNone(a.group)
 
-        self.assertTrue(a.created)
-        self.assertTrue(a.modified)
+        self.assertIsNotNone(a.created)
+        self.assertIsNotNone(a.modified)
 
-        self.assertTrue(a.group_read)
-        self.assertTrue(a.group_write)
-        self.assertTrue(a.other_read)
-        self.assertTrue(a.other_write)
+        self.assertIsNotNone(a.group_read)
+        self.assertIsNotNone(a.group_write)
+        self.assertIsNotNone(a.other_read)
+        self.assertIsNotNone(a.other_write)
 
     # XXX maybe redundant test
     def test_model_manager_class(self):
