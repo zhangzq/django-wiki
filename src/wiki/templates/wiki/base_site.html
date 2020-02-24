@@ -12,7 +12,24 @@
     <link href="{% static "wiki/bootstrap/css/wiki-bootstrap.min.css" %}" rel="stylesheet">
     <link href="/static/css/citics.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+
     {% render_block "css" %}
+<style>
+.navbar-fixed-top {
+    z-index:1;
+}
+
+
+        .editor-preview blockquote, .editor-preview pre, .editor-preview table, .editor-preview p, .editor-preview ol, .editor-preview ul {
+            margin-bottom: 1.5em;
+        }
+        .CodeMirror pre.CodeMirror-line {
+            font-family: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;
+        }
+
+</style>
   </head>
 
   <body>
