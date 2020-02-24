@@ -133,6 +133,79 @@ var confirmOnPageExit = function (e) {
     return;
   }
 };
+
+$(function () {
+    function formatTable(table) {
+        table = table.trim();
+        if (!table) {
+            return "";
+        }
+
+        var rows = table.split("\n").map(function (row) {
+            row = row.split("|");
+            row = row.map(function (col) {
+                return col.trim(); 
+            });
+
+            return row;
+        });
+
+        var widths = Array(rows[0].length).fill(0);
+        rows.forEach(function (row) {
+            row.forEach(function (item, col) {
+                widths[col] = Math.max(widths[col], item.length);
+            });
+        });
+
+        rows = rows.map(function (row) {
+            row = row.map(function (item, col) {
+                if (widths[col] > 0) {
+                    item = " " + item + " ".repeat(widths[col] - item.length + 1);
+                }
+
+                return item;
+            }).join("|");
+
+            return row;
+        });
+
+        return rows.join("\n");
+    }
+
+    var config = {
+        spellChecker: false,
+        autosave: {
+            enabled: false,
+        },
+        insertTexts: {
+            horizontalRule: ['', '\n\n-----\n\n'],
+            image: ['![](http://', ')'],
+            link: ['[', '](http://)'],
+            table: ['', '\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n']
+        },
+        toolbar: [
+            'bold', 'italic', 'strikethrough', 'heading-3', 'code', 'quote', 
+            'unordered-list', 'ordered-list', 'clean-block', 'link', 'image', '|', 'table',                  
+            {
+                name: "format_table",
+                action: function (editor){
+                    console.log(editor);
+                    var selection = editor.codemirror.doc.getSelection();
+                    editor.codemirror.doc.replaceSelection(formatTable(selection));
+                },
+                className: "fa fa-align-justify",
+                title: "format table",
+            }, 'preview', 'side-by-side', 'fullscreen', '|', 'guide',  ],
+
+
+        placeholder: 'Type here...',
+        tabSize: 4,
+        element: $("textarea")[0],
+    };
+
+    mde = new EasyMDE(config);
+});
+
 </script>
 {% endaddtoblock %}
 
