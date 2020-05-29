@@ -92,8 +92,13 @@ class EditSectionProcessor(Treeprocessor):
                 continue
 
             level = int(match.group(1))
+<<<<<<< HEAD
             for _l in range(level, last_level):
                 cur_pos[_l] = 0
+=======
+            for l in range(level, last_level):
+                cur_pos[l] = 0
+>>>>>>> udpate to 3.0
             cur_pos[level - 1] += 1
             last_level = level
             location = "-".join(map(str, cur_pos))

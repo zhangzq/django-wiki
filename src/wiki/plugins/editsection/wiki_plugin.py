@@ -6,7 +6,6 @@ from wiki.plugins.editsection.markdown_extensions import EditSectionExtension
 from . import settings
 from . import views
 
-
 class EditSectionPlugin(BasePlugin):
 
     slug = settings.SLUG

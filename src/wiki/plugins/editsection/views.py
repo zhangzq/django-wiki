@@ -132,7 +132,11 @@ class EditSection(EditView):
                 request.session["editsection_content"] = self.orig_section
             else:
                 messages.error(
+<<<<<<< HEAD
                     request, "{} {}".format(ERROR_SECTION_CHANGED, ERROR_TRY_AGAIN)
+=======
+                    request, " ".format(ERROR_SECTION_CHANGED, ERROR_TRY_AGAIN)
+>>>>>>> udpate to 3.0
                 )
                 return self._redirect_to_article()
         else:
@@ -158,7 +162,11 @@ class EditSection(EditView):
             if self.orig_section != text[location[0] : location[1]]:
                 messages.warning(
                     self.request,
+<<<<<<< HEAD
                     "{} {} {}".format(
+=======
+                    " ".format(
+>>>>>>> udpate to 3.0
                         ERROR_SECTION_CHANGED, ERROR_SECTION_UNSAVED, ERROR_TRY_AGAIN
                     ),
                 )
@@ -174,7 +182,11 @@ class EditSection(EditView):
             )
             self.article.save()
             messages.error(
+<<<<<<< HEAD
                 self.request, "{} {}".format(ERROR_ARTICLE_CHANGED, ERROR_TRY_AGAIN)
+=======
+                self.request, " ".format(ERROR_ARTICLE_CHANGED, ERROR_TRY_AGAIN)
+>>>>>>> udpate to 3.0
             )
 
         return self._redirect_to_article()
