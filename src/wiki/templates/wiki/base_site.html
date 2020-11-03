@@ -40,7 +40,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     {% block wiki_header_branding %}
-          <a class="navbar-brand" href="{% url 'wiki:root' %}">django-\/\/ i K |</a>
+          <a class="navbar-brand" href="/">量化策略平台</a>
     {% endblock %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -50,10 +50,13 @@
     {% block wiki_header_navlinks %}
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">{% trans "Home" %}</a>
+          <a class="nav-link" href="/wiki">股衍文档</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://github.com/django-wiki/django-wiki" target="_blank">{% trans "About" %}</a>
+          <a class="nav-link" href="http://websim.citicsinfo.com/docs/index.html" target="_blank">策略开发手册</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://websim.citicsinfo.com/api/util/namespaces.html" target="_blank">Util库</a>
         </li>
     </ul>
     {% endblock %}
