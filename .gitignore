@@ -44,11 +44,15 @@ htmlcov
 .tox
 .cache
 htmlcov
+coverage.xml
 
 #Eclipse
 .project
 .pydevproject
 .settings
+
+#Visual Studio Code
+.vscode
 
 #Virtualenv
 virtualenv

@@ -254,7 +254,7 @@ class Article(models.Model):
         cache_key = self.get_cache_key()
         cache_content_key = self.get_cache_content_key(user)
 
-        cached_items = cache.get(cache_key, list())
+        cached_items = cache.get(cache_key, [])
 
         if cache_content_key in cached_items:
             cached_content = cache.get(cache_content_key)
@@ -465,7 +465,7 @@ def on_article_delete_clear_cache(instance, **kwargs):
 @disable_signal_for_loaddata
 def on_article_revision_pre_save(**kwargs):
     instance = kwargs["instance"]
-    if kwargs.get("created", False):
+    if instance._state.adding:
         revision_changed = (
             not instance.previous_revision
             and instance.article

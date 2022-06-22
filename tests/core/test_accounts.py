@@ -16,6 +16,10 @@ from ..base import wiki_override_settings
 from ..testdata.models import CustomUser
 
 
+SIGNUP_TEST_USERNAME = "wiki"
+SIGNUP_TEST_PASSWORD = "wiki1234567"
+
+
 class AccountUpdateTest(
     RequireRootArticleMixin, ArticleWebTestUtils, DjangoClientTestBase
 ):
@@ -79,7 +83,7 @@ class UpdateProfileViewTest(
 
         test_auth = authenticate(username="admin", password="newPass")
 
-        self.assertNotEqual(test_auth, None)
+        self.assertIsNotNone(test_auth)
         self.assertEqual(test_auth.email, "test@test.com")
 
 
@@ -114,11 +118,25 @@ class SignupViewTests(RequireRootArticleMixin, TestBase):
         response = self.client.post(
             wiki_settings.SIGNUP_URL,
             data={
-                "password1": "wiki",
-                "password2": "wiki",
-                "username": "wiki",
+                "password1": SIGNUP_TEST_PASSWORD,
+                "password2": SIGNUP_TEST_PASSWORD,
+                "username": SIGNUP_TEST_USERNAME,
                 "email": "wiki@wiki.com",
             },
         )
         self.assertIs(CustomUser.objects.filter(email="wiki@wiki.com").exists(), True)
         self.assertRedirects(response, reverse("wiki:login"))
+
+        # Test that signing up the same user again gives a validation error
+        # Regression test: https://github.com/django-wiki/django-wiki/issues/1152
+        response = self.client.post(
+            wiki_settings.SIGNUP_URL,
+            data={
+                "password1": SIGNUP_TEST_PASSWORD,
+                "password2": SIGNUP_TEST_PASSWORD,
+                "username": SIGNUP_TEST_USERNAME,
+                "email": "wiki@wiki.com",
+            },
+        )
+        self.assertIs(response.status_code, 200)
+        self.assertContains(response, "username already exists")

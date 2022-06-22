@@ -4,6 +4,7 @@ import markdown
 from django.contrib.auth.models import AnonymousUser
 from django.template.loader import render_to_string
 from django.urls import reverse
+from wiki.core.markdown import add_to_registry
 from wiki.core.permissions import can_read
 from wiki.plugins.attachments import models
 
@@ -15,18 +16,22 @@ ATTACHMENT_RE = re.compile(
 
 class AttachmentExtension(markdown.Extension):
 
-    """ Abbreviation Extension for Python-Markdown. """
+    """Abbreviation Extension for Python-Markdown."""
 
     def extendMarkdown(self, md):
-        """ Insert AbbrPreprocessor before ReferencePreprocessor. """
-        md.preprocessors.add(
-            "dw-attachments", AttachmentPreprocessor(md), ">html_block"
+        """Insert AbbrPreprocessor before ReferencePreprocessor."""
+
+        add_to_registry(
+            md.preprocessors,
+            "dw-attachments",
+            AttachmentPreprocessor(md),
+            ">html_block",
         )
 
 
 class AttachmentPreprocessor(markdown.preprocessors.Preprocessor):
 
-    """django-wiki attachment preprocessor - parse text for [attachment:id] references. """
+    """django-wiki attachment preprocessor - parse text for [attachment:id] references."""
 
     def run(self, lines):
         new_text = []

@@ -8,6 +8,7 @@ from django.urls.exceptions import Resolver404
 from markdown.extensions import Extension
 from markdown.postprocessors import AndSubstitutePostprocessor
 from markdown.treeprocessors import Treeprocessor
+from wiki.core.markdown import add_to_registry
 from wiki.decorators import which_article
 from wiki.models import Article
 from wiki.models import URLPath
@@ -97,7 +98,8 @@ class LinkExtension(Extension):
         md.registerExtension(self)
         self.md = md
         ext = self.TreeProcessorClass(md, self.getConfigs())
-        md.treeprocessors.add("redlinks", ext, ">inline")
+
+        add_to_registry(md.treeprocessors, "redlinks", ext, ">inline")
 
 
 def makeExtension(*args, **kwargs):

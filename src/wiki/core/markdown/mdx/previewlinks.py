@@ -1,5 +1,6 @@
 import markdown
 from markdown.treeprocessors import Treeprocessor
+from wiki.core.markdown import add_to_registry
 
 
 class PreviewLinksExtension(markdown.Extension):
@@ -7,7 +8,8 @@ class PreviewLinksExtension(markdown.Extension):
     """Markdown Extension that sets all anchor targets to _blank when in preview mode"""
 
     def extendMarkdown(self, md):
-        md.treeprocessors.add("previewlinks", PreviewLinksTree(md), "_end")
+
+        add_to_registry(md.treeprocessors, "previewlinks", PreviewLinksTree(md), "_end")
 
 
 class PreviewLinksTree(Treeprocessor):

@@ -3,6 +3,7 @@ import re
 import markdown
 from django.template.loader import render_to_string
 from django.utils.translation import gettext as _
+from wiki.core.markdown import add_to_registry
 from wiki.plugins.macros import settings
 
 # See:
@@ -17,10 +18,13 @@ KWARG_RE = re.compile(
 
 class MacroExtension(markdown.Extension):
 
-    """ Macro plugin markdown extension for django-wiki. """
+    """Macro plugin markdown extension for django-wiki."""
 
     def extendMarkdown(self, md):
-        md.inlinePatterns.add("dw-macros", MacroPattern(MACRO_RE, md), ">link")
+
+        add_to_registry(
+            md.inlinePatterns, "dw-macros", MacroPattern(MACRO_RE, md), ">link"
+        )
 
 
 class MacroPattern(markdown.inlinepatterns.Pattern):
@@ -65,32 +69,32 @@ class MacroPattern(markdown.inlinepatterns.Pattern):
         )
         return self.markdown.htmlStash.store(html)
 
-    article_list.meta = dict(
-        short_description=_("Article list"),
-        help_text=_("Insert a list of articles in this level."),
-        example_code="[article_list depth:2]",
-        args={"depth": _("Maximum depth to show levels for.")},
-    )
+    article_list.meta = {
+        "short_description": _("Article list"),
+        "help_text": _("Insert a list of articles in this level."),
+        "example_code": "[article_list depth:2]",
+        "args": {"depth": _("Maximum depth to show levels for.")},
+    }
 
     def toc(self):
         return "[TOC]"
 
-    toc.meta = dict(
-        short_description=_("Table of contents"),
-        help_text=_("Insert a table of contents matching the headings."),
-        example_code="[TOC]",
-        args={},
-    )
+    toc.meta = {
+        "short_description": _("Table of contents"),
+        "help_text": _("Insert a table of contents matching the headings."),
+        "example_code": "[TOC]",
+        "args": {},
+    }
 
     def wikilink(self):
         return ""
 
-    wikilink.meta = dict(
-        short_description=_("WikiLinks"),
-        help_text=_("Insert a link to another wiki page with a short notation."),
-        example_code="[[WikiLink]]",
-        args={},
-    )
+    wikilink.meta = {
+        "short_description": _("WikiLinks"),
+        "help_text": _("Insert a link to another wiki page with a short notation."),
+        "example_code": "[[WikiLink]]",
+        "args": {},
+    }
 
 
 def makeExtension(*args, **kwargs):

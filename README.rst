@@ -13,7 +13,7 @@ django-wiki
    :target: https://pypi.org/project/wiki/
 .. |Downloads| image:: https://img.shields.io/pypi/dm/wiki.svg
    :target: https://pypi.org/project/wiki/
-.. |IRC| image:: https://img.shields.io/badge/irc-%23django--wiki%20on%20freenode-blue.svg
+.. |IRC| image:: https://img.shields.io/badge/irc-%23django--wiki%20on%20libera.chat-blue.svg
    :target: https://webchat.freenode.net?channels=%23django-wiki
 
 Django support
@@ -24,6 +24,12 @@ The below table explains which Django versions are supported.
 +------------------+----------------+--------------+
 | Release          | Django         | Upgrade from |
 +==================+================+==============+
+| 0.9.x            | 2.2, 3.0, 3.1, | 0.7          |
+|                  | 3.2, 4.0       |              |
++------------------+----------------+--------------+
+| 0.8.x            | 2.2, 3.0, 3.1, | 0.7          |
+|                  | 3.2, 4.0       |              |
++------------------+----------------+--------------+
 | 0.7.x            | 2.2, 3.0, 3.1, | 0.5 or 0.6   |
 |                  | 3.2            |              |
 +------------------+----------------+--------------+
