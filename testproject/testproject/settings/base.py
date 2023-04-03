@@ -99,7 +99,7 @@ LOGIN_REDIRECT_URL = reverse_lazy("wiki:get", kwargs={"path": ""})
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(PROJECT_DIR, "db", "prepopulated.db"),
+        "NAME": os.path.join(PROJECT_DIR, "db.sqlite3"),
     }
 }
 
@@ -152,3 +152,5 @@ WIKI_ANONYMOUS_WRITE = True
 WIKI_ANONYMOUS_CREATE = False
 
 SESSION_COOKIE_SECURE = True
+
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
