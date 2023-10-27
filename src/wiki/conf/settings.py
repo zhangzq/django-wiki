@@ -83,7 +83,7 @@ _default_tag_whitelists = bleach.ALLOWED_TAGS.union(
 
 #: List of allowed tags in Markdown article contents.
 MARKDOWN_HTML_WHITELIST = _default_tag_whitelists
-MARKDOWN_HTML_WHITELIST.union(
+MARKDOWN_HTML_WHITELIST = MARKDOWN_HTML_WHITELIST.union(
     getattr(django_settings, "WIKI_MARKDOWN_HTML_WHITELIST", frozenset())
 )
 
@@ -98,6 +98,7 @@ for tag in MARKDOWN_HTML_WHITELIST:
 
 _default_attribute_whitelist["img"].append("src")
 _default_attribute_whitelist["img"].append("alt")
+_default_attribute_whitelist["td"].append("align")
 
 #: Dictionary of allowed attributes in Markdown article contents.
 MARKDOWN_HTML_ATTRIBUTES = _default_attribute_whitelist
